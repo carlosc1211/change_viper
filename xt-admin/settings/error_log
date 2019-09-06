@@ -1,0 +1,25 @@
+[04-Feb-2016 07:45:46 America/Denver] PHP Notice:  Undefined variable: codigo in /home2/ussecuri/public_html/viper/xt-admin/settings/alert-edit.php on line 13
+[04-Feb-2016 07:45:46 America/Denver] PHP Notice:  Undefined variable: url1 in /home2/ussecuri/public_html/viper/xt-admin/settings/alert-edit.php on line 149
+[04-Feb-2016 07:46:13 America/Denver] PHP Notice:  Undefined variable: codigo in /home2/ussecuri/public_html/viper/xt-admin/settings/alert-edit.php on line 13
+[04-Feb-2016 07:46:13 America/Denver] PHP Notice:  Undefined variable: url1 in /home2/ussecuri/public_html/viper/xt-admin/settings/alert-edit.php on line 149
+[04-Feb-2016 07:54:16 America/Denver] PHP Notice:  Undefined variable: codigo in /home2/ussecuri/public_html/viper/xt-admin/settings/alert-edit.php on line 13
+[04-Feb-2016 07:54:16 America/Denver] PHP Notice:  Undefined variable: url1 in /home2/ussecuri/public_html/viper/xt-admin/settings/alert-edit.php on line 149
+[04-Feb-2016 08:12:50 America/Denver] PHP Notice:  Undefined variable: codigo in /home2/ussecuri/public_html/viper/xt-admin/settings/alert-edit.php on line 13
+[04-Feb-2016 08:12:51 America/Denver] PHP Notice:  Undefined variable: url1 in /home2/ussecuri/public_html/viper/xt-admin/settings/alert-edit.php on line 149
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined index: coduser in /home2/ussecuri/public_html/viper/lib/val_session.php on line 2
+[17-Jul-2016 11:47:59 America/New_York] PHP Warning:  extract() expects parameter 1 to be array, null given in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 39
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined variable: co_perfil in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 41
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined index: coduser in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 38
+[17-Jul-2016 11:47:59 America/New_York] PHP Warning:  extract() expects parameter 1 to be array, null given in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 39
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined variable: co_perfil in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 41
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined index: coduser in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 38
+[17-Jul-2016 11:47:59 America/New_York] PHP Warning:  extract() expects parameter 1 to be array, null given in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 39
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined variable: co_perfil in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 41
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined index: coduser in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 38
+[17-Jul-2016 11:47:59 America/New_York] PHP Warning:  extract() expects parameter 1 to be array, null given in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 39
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined variable: co_perfil in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 41
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined index: coduser in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 38
+[17-Jul-2016 11:47:59 America/New_York] PHP Warning:  extract() expects parameter 1 to be array, null given in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 39
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined variable: co_perfil in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 41
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined index: coduser in /home2/ussecuri/public_html/viper/xt-admin/includes/menu.php on line 68
+[17-Jul-2016 11:47:59 America/New_York] PHP Notice:  Undefined variable: ingresa in /home2/ussecuri/public_html/viper/xt-model/ConnectModel.php on line 36

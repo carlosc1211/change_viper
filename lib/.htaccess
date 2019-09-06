@@ -1,0 +1,20 @@
+<ifmodule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault A3600
+  <filesmatch ".(jpg|gif|png|css|ico|js|swf)$">
+     ExpiresDefault "access plus 30 day"
+  </filesmatch>
+</ifmodule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|xml|gz)$">
+    Header append Vary Accept-Encoding
+	Header unset ETag
+  </FilesMatch>
+</IfModule>
+FileETag None
+<ifmodule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
+	BrowserMatch ^Mozilla/4 gzip-only-text/html
+	BrowserMatch ^Mozilla/4.0[678] no-gzip
+	BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+</ifmodule>

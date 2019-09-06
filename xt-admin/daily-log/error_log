@@ -1,0 +1,9 @@
+[02-Feb-2016 07:53:50 America/Denver] PHP Warning:  opendir(../../images/daily-activity/c42605ffb12fb9e8ba7073cfb837ab9b): failed to open dir: No such file or directory in /home2/ussecuri/public_html/viper/xt-admin/daily-log/daily-log-edit.php on line 150
+[02-Feb-2016 08:10:28 America/Denver] PHP Warning:  opendir(../../images/daily-activity/c42605ffb12fb9e8ba7073cfb837ab9b): failed to open dir: No such file or directory in /home2/ussecuri/public_html/viper/xt-admin/daily-log/daily-log-edit.php on line 150
+[02-Feb-2016 08:11:47 America/Denver] PHP Warning:  opendir(../../images/daily-activity/c42605ffb12fb9e8ba7073cfb837ab9b): failed to open dir: No such file or directory in /home2/ussecuri/public_html/viper/xt-admin/daily-log/daily-log-edit.php on line 150
+[02-Feb-2016 08:27:39 America/Denver] PHP Warning:  opendir(../../images/daily-activity/c42605ffb12fb9e8ba7073cfb837ab9b): failed to open dir: No such file or directory in /home2/ussecuri/public_html/viper/xt-admin/daily-log/daily-log-edit.php on line 150
+[14-Jul-2016 20:44:13 America/New_York] PHP Notice:  Undefined variable: header_daily_log in /home2/ussecuri/public_html/viper/xt-admin/daily-log/daily-log-edit-print.php on line 23
+[14-Jul-2016 20:44:13 America/New_York] PHP Notice:  Undefined variable: footer_daily_log in /home2/ussecuri/public_html/viper/xt-admin/daily-log/daily-log-edit-print.php on line 109
+[15-Jul-2016 10:13:35 America/New_York] PHP Notice:  Undefined index: coduser in /home2/ussecuri/public_html/viper/lib/val_session.php on line 2
+[15-Jul-2016 10:13:35 America/New_York] PHP Notice:  Undefined variable: header_daily_log in /home2/ussecuri/public_html/viper/xt-admin/daily-log/daily-log-edit-print.php on line 23
+[15-Jul-2016 10:13:35 America/New_York] PHP Notice:  Undefined variable: footer_daily_log in /home2/ussecuri/public_html/viper/xt-admin/daily-log/daily-log-edit-print.php on line 109

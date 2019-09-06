@@ -1,0 +1,9 @@
+# Use PHP5.4 Single php.ini as default
+AddHandler application/x-httpd-ea-php56 .php
+# For security reasons, Option followsymlinks cannot be overridden.
+#Options +FollowSymlinks
+Options +SymLinksIfOwnerMatch
+RewriteEngine on
+
+# #comment
+RewriteRule ^([^.]+)/xeniat/$ index.php?u=$1&%{QUERY_STRING} [NC]

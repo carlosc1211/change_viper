@@ -1,0 +1,12 @@
+[16-Apr-2018 07:52:02 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.company' in 'field list'' in /home6/ussecuri/public_html/viper/xt-model/UsuarioModel.php:22
+Stack trace:
+#0 /home6/ussecuri/public_html/viper/xt-model/UsuarioModel.php(22): PDO->query('select a.co as ...')
+#1 /home6/ussecuri/public_html/viper/xt-admin/client-post/client-post-new.php(91): UsuarioModel->listarClientesActivos(Object(PDO))
+#2 {main}
+  thrown in /home6/ussecuri/public_html/viper/xt-model/UsuarioModel.php on line 22
+[16-Apr-2018 07:52:05 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.company' in 'field list'' in /home6/ussecuri/public_html/viper/xt-model/UsuarioModel.php:22
+Stack trace:
+#0 /home6/ussecuri/public_html/viper/xt-model/UsuarioModel.php(22): PDO->query('select a.co as ...')
+#1 /home6/ussecuri/public_html/viper/xt-admin/client-post/client-post-new.php(91): UsuarioModel->listarClientesActivos(Object(PDO))
+#2 {main}
+  thrown in /home6/ussecuri/public_html/viper/xt-model/UsuarioModel.php on line 22
