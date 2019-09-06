@@ -134,7 +134,7 @@ $post = new PostModel();
                                 <table id="example" class="table table-striped responsive-utilities jambo_table">
                                     <thead>
                                     <tr class="headings">
-                                        <th>Clocked In </th>
+                                        <th>Clocked In </th> 
                                         <th>Employee </th>
                                         <th>Post </th>
                                         <th>Status </th>
