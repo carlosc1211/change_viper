@@ -7,7 +7,8 @@ require_once('../../xt-model/PostModel.php');
 require('../includes/header.php');
 
 $co_acc = getA("co_acc");
-
+$ano = date('Y');
+                                //echo $ano;
 
 $tit1 = "i-Tracker";
 
@@ -20,7 +21,15 @@ $url6 = "worked-hours-list-excel.php";
 $post = new PostModel();
 
 ?>
-
+<script type="text/javascript" src="../../bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="../../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="../../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({  widgetPositioning: { horizontal:'right' }  });
+            $('#datetimepicker2').datetimepicker({  widgetPositioning: { horizontal:'right' }  });
+        });
+    </script>
 <body class="nav-md">
 
     <div class="container body">
@@ -110,6 +119,101 @@ $post = new PostModel();
                             <hr>
 
                             <div class="x_content">
+                                <?php
+                                $track = new TrackModel();
+                                
+                                $_SESSION["rs"] = "";
+                                $a = isset($_REQUEST["acc"]);
+                                /* $desde = todate_hr(getA("fe_desde"));
+                                $hasta= todate_hr(getA("fe_hasta")); */
+                                $co_post = getA("co_post");
+                                
+                                if ($co_post!="") {
+                                    //echo "entre aqui";
+                                    $desde = dateesp2(getA("fe_desde"));
+                                    $hasta = dateesp3(getA("fe_hasta"));
+                                    //echo $hasta;
+                                    $co_post = getA("co_post");
+                                    $_SESSION["rs"] = $track->listarWorked($db,$desde,$hasta,$co_post);    
+                                } else {
+                                    //echo "entre aqui Carlos";
+                                    $cont=0;
+                                    $_SESSION["rs"] = $track->listarWorkedforYear($db, $ano);
+                                }
+
+                                ?>
+                                <table id="example" class="table table-striped responsive-utilities jambo_table">
+                                    <thead>
+                                    <tr class="headings">
+                                        <th>Clocked In </th> 
+                                        <th>Employee </th>
+                                        <th>Post </th>
+                                        <th>Status </th>
+                                        <th class=" no-link last"><span class="nobr">Action</span>
+                                        </th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <?php
+                                    
+                                    foreach( $_SESSION["rs"] as $rss)
+                                    {
+                                        extract($rss);
+                                    ?>
+                                    <tr class="even pointer">
+                                        <td class=" "><?php echo $rss['clocked_in']?></td>
+                                        <td class=" "><?php echo $rss['nb_emp'] . ' ' . $rss['apll_emp']?></td>
+                                        <td class=" "><?php echo $rss['post_name']?></td>
+                                        <td class=" ">
+                                        <?php 
+                                        if($stat==1)
+                                        {
+                                            echo "<div style='color:green'><i class='fa fa-circle'></i> Active</div>";
+                                        }
+                                        else
+                                        {
+                                            echo "<div style='color:red'><i class='fa fa-circle'></i> Inactive</div>";
+                                        }
+                                        ?>
+                                        </td>
+                                        <td class=" last">
+                                            <a href="<?php echo $url3;?>?co=<?php echo $co;?>&amp;co_acc=<?php echo $co_acc ;?>" class="btn btn-default load"><i class="fa fa-search"></i> View</a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <!-- ORIGINAL -->
+
+
+
+                            <!-- <div class="x_content">
                             <?php 
                             $track = new TrackModel();
                             $_SESSION["rs"] = "";
@@ -187,7 +291,7 @@ $post = new PostModel();
                             }
                             ?>
 
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -209,15 +313,7 @@ $post = new PostModel();
     include '../includes/bot-footer.php';
     include '../includes/datatables_date.php';
     ?>
-    <script type="text/javascript" src="../../bower_components/moment/min/moment.min.js"></script>
-    <script type="text/javascript" src="../../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-    <link rel="stylesheet" href="../../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker1').datetimepicker({  widgetPositioning: { horizontal:'right' }  });
-            $('#datetimepicker2').datetimepicker({  widgetPositioning: { horizontal:'right' }  });
-        });
-    </script>
+    
 </body>
 
 </html>

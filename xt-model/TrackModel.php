@@ -20,26 +20,27 @@ class TrackModel
 
     }
 
-    public function listarWorked($db,$desde='',$hasta='',$co_post='', $ano='')
+    public function listarWorked($db,$desde='',$hasta='',$co_post='')
     {
-        $ano = getdate();
-        echo $ano;
-        if(trim($desde)!='-- :' && trim($hasta)!='-- :' && trim($desde)!='' && trim($hasta)!='')
-            $strsql_1 = " and  (a.fe_reg >= '$desde' and a.fe_reg <= '$hasta')";
 
+        if(trim($desde)!='-- :' && trim($hasta)!='-- :' && trim($desde)!='' && trim($hasta)!='')
+            //$strsql_1 = " and  (a.fe_reg >= '$desde' and a.fe_reg <= '$hasta')";
+            $strsql_1 = "and a.fe_reg BETWEEN '$desde' AND '$hasta'";
+            //echo $strsql_1;
         if(trim($co_post)!='')
-            $strsql_2 = " and a.co_post=$co_post";
+            $strsql_2 = "and a.co_post=$co_post";
 
         $stmt = $db->query("select a.co,b.nb as nb_emp, b.apll as apll_emp,c.nb as post_name, DATE_FORMAT(a.fe_reg,'%m/%d/%Y %l:%i %p') as clocked_in,
             a.stat
             from tssa_clock_log a, tssa_employee b, tssa_post c
             where a.co_employee=b.co and a.co_post=c.co and a.tipo=1 $strsql_1 $strsql_2");
+
+            //echo $stmt;
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
-    //public function listarWorkedforYear($db, $desde='',$hasta='',$co_post='', $ano='')
-    public function listarWorkedforYear($db,$ano)
+    public function listarWorkedforYear($db, $ano)
     {
         /* if(trim($desde)!='-- :' && trim($hasta)!='-- :' && trim($desde)!='' && trim($hasta)!='')
             $strsql_1 = " and  (a.fe_reg >= '$desde' and a.fe_reg <= '$hasta')";
@@ -47,7 +48,7 @@ class TrackModel
         if(trim($co_post)!='')
             $strsql_2 = " and a.co_post=$co_post"; */
        
-
+        $ano = 
         $stmt = $db->query("select a.co,b.nb as nb_emp, b.apll as apll_emp,c.nb as post_name, 
                             DATE_FORMAT(a.fe_reg,'%m/%d/%Y %l:%i %p') as clocked_in, a.stat
                             from tssa_clock_log a, tssa_employee b, tssa_post c
