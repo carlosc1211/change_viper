@@ -149,6 +149,13 @@ class TrackModel
 
     }
 
+    public function consultaGeo($db){
+        $stmt = $db->prepare("select * from tssa_post_geopoint where co_post=?");
+        $stmt->execute(array($_SESSION["codemployee"]["co"]));
+
+        $rs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     public function getActiveClockIn($db)
     {

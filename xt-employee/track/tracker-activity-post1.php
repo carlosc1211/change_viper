@@ -16,8 +16,6 @@ require('../includes/header.php');
 $co_acc = getA("co_acc");
 $_dir = $_SESSION["codclockin"]["_dir"];
 
-
-
 $tit1 = "Main Menu";
 $tit2 = "Officer Tracker Activity";
 $url1 = "../main/findex.php";
@@ -80,7 +78,7 @@ $url2 = "tracker-activity.php";
                                         if($result){
                                         ?>
                                             <script>
-                                                document.location.href = 'track-registered.php?tipo=In&point=<?php echo getA("nb_point")?>';
+                                                document.location.href = 'track-registered1.php?tipo=In&point=<?php echo getA("nb_point")?>';
                                             </script>
                                        <?php
                                         }
@@ -102,7 +100,7 @@ $url2 = "tracker-activity.php";
                                     //***********************  Cambiamos el tama�o del archivo  **********************************
                                     $targetPath = "../../images/track/";
 
-                                    $nombre_archivo = $targetPath.$_dir."/".$qr_image;
+                                    //$nombre_archivo = $targetPath.$_dir."/".$qr_image;
 
                                     /*
                                     $fe_actual = date_create(date("Y-n-j G:i"));
@@ -116,7 +114,7 @@ $url2 = "tracker-activity.php";
                                     //echo $interval;
                                     */
 
-                                    $interval = dateDiffMinutes(date("Y-n-j G:i"), $qr_image_date);
+                          /*          $interval =  dateDiffMinutes(date("Y-n-j G:i"), $qr_image_date);
 
                                     if ($interval>-35)
                                     {
@@ -150,15 +148,16 @@ $url2 = "tracker-activity.php";
                                             fclose($fp);
                                              
                                              
-                                        }
+                                        }*/
                                         //*********************************************************************************************
 
                                         if($qr_image!='')
                                         {
-                                            $qrcode = new QrReader("../../images/track/$_dir/$qr_image");
-                                            if($qrcode->text())
-                                                $text = explode("|",$qrcode->text()); //return decoded text from QR Code            
-                                        }
+                                           // $qrcode = new QrReader("../../images/track/$_dir/$qr_image");
+                                        //     if($qrcode->text())
+                                        //         $text = explode("|",$qrcode->text()); //return decoded text from QR Code            
+                                        // }
+                                                $text=$qr_image;
                                     }
                                     else
                                         $str_msj = "Image loaded must be taken at time!. ";                                    
@@ -166,11 +165,11 @@ $url2 = "tracker-activity.php";
 
                                 ?>
 
-                                <form role="form" action="tracker-activity-post.php?acc=ing" method="post" name="forma" id="forma">
-                                    <input type="hidden" name="poslat" id="poslat" value="">
-                                    <input type="hidden" name="poslong" id="poslong" value="">
-                                    <input type="hidden" name="accuracy" id="accuracy" value="">
-                                    <input type="hidden" name="_dir" id="_dir" value="<?php echo $_dir ?>">
+                                <form role="form" action="tracker-activity-post1.php?acc=ing" method="post" name="forma" id="forma">
+                                    <input type="text" name="poslat" id="poslat" value="">
+                                    <input type="text" name="poslong" id="poslong" value="">
+                                    <input type="text" name="accuracy" id="accuracy" value="">
+                                    <input type="text" name="_dir" id="_dir" value="<?php echo $_dir ?>">
 
                                         <?php
                                         if(is_array($text))
@@ -212,9 +211,9 @@ $url2 = "tracker-activity.php";
                                                             </div>
 
                                                         </div>
-                                                        <input type="hidden" name="pos_lat_point" id="pos_lat_point" value="<?php echo $text[0] ?>">    
-                                                        <input type="hidden" name="pos_long_point" id="pos_long_point" value="<?php echo $text[1] ?>">    
-                                                        <input type="hidden" name="nb_point" id="nb_point" value="<?php echo $text[2] ?>">    
+                                                        <input type="text" name="pos_lat_point" id="pos_lat_point" value="<?php echo $text[0] ?>">    
+                                                        <input type="text" name="pos_long_point" id="pos_long_point" value="<?php echo $text[1] ?>">    
+                                                        <input type="text" name="nb_point" id="nb_point" value="<?php echo $text[2] ?>">    
 
                                                         <div class="clearfix"></div>
 
@@ -260,7 +259,7 @@ $url2 = "tracker-activity.php";
                                                 </div>
                                                 <div class="col-md-6 col-xs-12">
                                                     <br>
-                                                    <button type="button" class="btn btn-success col-md-6 col-xs-12" onclick="javascript:location.href='tracker-activity.php'">Back</button>
+                                                    <button type="button" class="btn btn-success col-md-6 col-xs-12" onclick="javascript:location.href='tracker-activity1.php'">Back</button>
                                                     <button class=" btn-dark btn col-md-5 col-xs-12" type="button" onclick="javasscript:location.href='../main/findex.php'">Back to Main Menu</button>
                                                 </div>
 
