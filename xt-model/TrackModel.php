@@ -40,6 +40,32 @@ class TrackModel
 
     }
 
+    public function consultaGeo($db, $cccc){
+        $stmt = $db->prepare("select * from tssa_post_geopoint where co_post=?");
+        $stmt->execute(array($cccc));
+
+
+        $rsgeopoint2=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        $polygon2 = array();
+
+        if($rsgeopoint2)
+            {
+                foreach($rsgeopoint2 as $rss)
+                {
+                extract($rss);
+
+                $polygon2[] = "$latitude $longitude";
+
+                }
+
+                $polygon2[] = $polygon[0];
+
+                $_SESSION["post_polygon2"] = $polygon2;
+            }
+            return true;
+
+    }
+
     public function listarWorkedforYear($db, $ano)
     {
         /* if(trim($desde)!='-- :' && trim($hasta)!='-- :' && trim($desde)!='' && trim($hasta)!='')
@@ -147,13 +173,6 @@ class TrackModel
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    }
-
-    public function consultaGeo($db){
-        $stmt = $db->prepare("select * from tssa_post_geopoint where co_post=?");
-        $stmt->execute(array($_SESSION["codemployee"]["co"]));
-
-        $rs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 

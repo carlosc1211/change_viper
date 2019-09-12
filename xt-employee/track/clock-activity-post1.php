@@ -15,8 +15,6 @@ require('../includes/header.php');
 $co_acc = getA("co_acc");
 $_dir = getA("_dir");
 
-
-
 $rs = $clocktipo->getTipo($db);
 
 if($rs) extract($rs[0]);
@@ -25,9 +23,6 @@ if($tipo==1)
 {   $titcomp = "Out";  $tipo=2; $co_clock_tipo=$co;  }
 else
 {   $titcomp = "In";   $tipo=1; $co_clock_tipo=$co;   }
-
-
-
 
 
 $tit1 = "Main Menu";
@@ -39,8 +34,6 @@ $url2 = "clock-activity.php";
 <body class="nav-md">
 
     <div class="container body">
-
-
         <div class="main_container">
 
             <div class="col-md-3 left_col">
@@ -111,7 +104,7 @@ $url2 = "clock-activity.php";
                                 $qr_image = getA("qr_image");
                                 $qr_image_date = getA("qr_image_date");
                                 //$text=$qr_image;
-                                $targetPath = "../../images/track/";
+                                //$targetPath = "../../images/track/";
 
                                 //$nombre_archivo = $targetPath.$_dir."/".$qr_image;
                                 /*

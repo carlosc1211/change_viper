@@ -19,13 +19,19 @@ $url2 = "clock-activity-in.php";
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     </head>
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js" ></script>	
+   
     <style>
 		@media only screen and (max-width: 700px) {
 			video {
-                width: 50px;
-                height: 50px;
-				/*max-width: 100%;*/
+                /* width: 50%;
+                height: 50px; */
+				max-width: 100%;
 			}
+		}
+        @media only screen and (min-width: 400px) {
+			video {
+                width: 300px;
+            }
 		}
     </style>
 <body class="nav-md">
@@ -106,8 +112,9 @@ $url2 = "clock-activity-in.php";
                                     <div class="col-md-6 col-xs-12">
                                             <br>
                                             <div class="alert alert-error"><strong>You are not Clocked Out</strong></div>
-
+                                            <button class=" btn btn-success col-md-6 col-xs-12" type="button" onclick="javasscript:location.href='tracker-activity1.php'">Officer Tracker Activity</button>
                                             <button class=" btn-dark btn load col-md-12 col-xs-12" type="button" onclick="javasscript:location.href='../main/findex.php'">Back to Main Menu</button>
+                                            
                                         </div>
                                     </div>
 
@@ -118,8 +125,10 @@ $url2 = "clock-activity-in.php";
 
                                 <br><br>
                             </form>
+                           
 
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -296,7 +305,7 @@ $url2 = "clock-activity-in.php";
 
 
     </script>
-
+ 
 </body>
 
 </html>

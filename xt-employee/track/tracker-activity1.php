@@ -15,6 +15,8 @@ $co_acc = getA("co_acc");
 
 $_dir = $_SESSION["codclockin"]["_dir"];
 
+//echo $_SESSION["codclockin"]["co"];
+
 $tit1 = "Main Menu";
 $tit2 = "Officer Tracker Activity";
 $url1 = "../main/findex.php";
@@ -84,28 +86,25 @@ $url2 = "tracker-activity.php";
                                                     <div id="map" style="height: 200px"></div>
                                                     <div class="clearfix"></div>
                                                 </div>
+                                                
                                             </div>
                                             <div class="col-md-12 col-xs-12 bg-map">
                                                 <h4>Post Info</h4>
                                                     <label for="">Post: </label> <?php echo $post_name ?><br>
                                                     <label for="">Address: </label> <?php echo $post_dir ?><br>
-
                                                 <div class="clearfix"></div>
-
                                                 <input type="hidden" name="qr_image" id="qr_image" value=""> 
-                                                <input type="hidden" name="qr_image_date" id="qr_image_date" value="">    
+                                                <input type="hidden" name="qr_image_date" id="qr_image_date" value="">
                                             </div>
 
-                                            <div class="clearfix"></div>
-                                            <br/>
-                                            <!-- <div id="dropzone" class="dropzone">
-                                       
-                                    </div>       -->
-                                    
+                                            <div class="col-md-6 col-xs-12">
+                                            <video muted="muted" id="video"></video>
+                                            </div>
 
-                                    <video muted="muted" id="video"></video>
+                                            <!-- <div class="clearfix"></div> -->
+                                            <br/>
                                             <br>
-                                            <button type="button" class="btn btn-success  col-md-6 col-xs-12" onclick="javascript:document.forma.submit()">Load Point Info</button>                                            
+                                            <button type="button" class="btn btn-success  col-md-6 col-xs-12" onclick="javascript:document.forma.submit()">Load Point Info</button>
                                             <button class=" btn-dark btn col-md-5 col-xs-12" type="button" onclick="javasscript:location.href='<?php echo $url1?>'">Back to Main Menu</button>
 
                                             <?php

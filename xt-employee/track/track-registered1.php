@@ -77,7 +77,7 @@ $url2 = "clock-activity.php";
                                         echo "<br><br>";
                                     }
                                     ?>                                    
-                                    <button class="btn-info btn load col-md-6 col-xs-12" type="button" onclick="javasscript:location.href='tracker-activity.php'"><i class="fa fa-arrow-circle-o-right"></i> Next Check Point</button>
+                                    <button class="btn-info btn load col-md-6 col-xs-12" type="button" onclick="javasscript:location.href='tracker-activity1.php'"><i class="fa fa-arrow-circle-o-right"></i> Next Check Point</button>
                                     <button class="btn-dark btn load col-md-5 col-xs-12" type="button" onclick="javasscript:location.href='<?php echo $url1?>'">Back to Main Menu</button>
                                 </div>
                             </form>

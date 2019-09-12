@@ -16,6 +16,14 @@ require('../includes/header.php');
 $co_acc = getA("co_acc");
 $_dir = $_SESSION["codclockin"]["_dir"];
 
+$pos1 = $_POST['poslat'];
+$pos2 = round($_POST['poslong'], 7);
+//echo $pos1;
+//echo $_SESSION["codclockin"]["co"];
+
+//echo $_SESSION["codclockin"]["co_post"];
+//$cccc = $_SESSION["codclockin"]["co_post"];
+
 $tit1 = "Main Menu";
 $tit2 = "Officer Tracker Activity";
 $url1 = "../main/findex.php";
@@ -66,9 +74,11 @@ $url2 = "tracker-activity.php";
                                                 "poslong"=>getA("poslong"),
                                                 "accuracy"=>getA("accuracy"),
                                                 "co_post"=>$_SESSION["codclockin"]["co_post"],
-                                                "pos_lat_point"=>getA("pos_lat_point"),
-                                                "pos_long_point"=>getA("pos_long_point"),
-                                                "nb_point"=>getA("nb_point"),
+
+                                                "pos_lat_point"=>getA("qr_image1"),
+                                                "pos_long_point"=>getA("qr_image2"),
+                                                "nb_point"=>getA("qr_image3"),
+                                                
                                                 "co_clock_in"=>$_SESSION["codclockin"]["co"],
                                                 "_dir"=>$_SESSION["codclockin"]["_dir"],
                                                 "coduser"=>$_SESSION["codemployee"]["co"]
@@ -97,67 +107,16 @@ $url2 = "tracker-activity.php";
                                     $qr_image = getA("qr_image");
                                     $qr_image_date = getA("qr_image_date");
 
-                                    //***********************  Cambiamos el tama�o del archivo  **********************************
-                                    $targetPath = "../../images/track/";
-
-                                    //$nombre_archivo = $targetPath.$_dir."/".$qr_image;
-
-                                    /*
-                                    $fe_actual = date_create(date("Y-n-j G:i"));
-                                    $qr_image_date = date_create($qr_image_date);
-
-                                    //echo date_format($fe_actual, 'Y-m-d G:i') . "<br>";
-                                    //echo date_format($qr_image_date, 'Y-m-d G:i') . "<br>";
-
-                                    $interval = date_diff($fe_actual, $qr_image_date);
-                                    $interval =  $interval->format('%h');
-                                    //echo $interval;
-                                    */
-
-                          /*          $interval =  dateDiffMinutes(date("Y-n-j G:i"), $qr_image_date);
-
-                                    if ($interval>-35)
+                                    //echo $qr_image;
+                                    //echo $qr_image_date;                                    
+                                    $latitud = explode("|", $qr_image);
+                                    $a = $latitud[0];
+                                    $b = $latitud[1];
+                                    $c = $latitud[2];
+                                 
+                                    if($qr_image!='')
                                     {
-                                        $origen=$nombre_archivo;
-                                        $destino=$nombre_archivo;
-                                        $destino_temporal=tempnam("tmp/","tmp");
-
-                                        // Establecer un ancho y alto m�ximo
-                                        $ancho = 300;
-                                        $alto = 300;
-
-                                        // Obtener las nuevas dimensiones
-                                        list($ancho_orig, $alto_orig) = getimagesize($nombre_archivo);
-
-
-                                        if($ancho_orig>$ancho)
-                                        {
-                                            $ratio_orig = $ancho_orig/$alto_orig;
-
-                                            if ($ancho/$alto > $ratio_orig) {
-                                               $ancho = $alto*$ratio_orig;
-                                            } else {
-                                               $alto = $ancho/$ratio_orig;
-                                            }
-
-                                            redimensionar_jpeg($origen, $destino_temporal, $ancho, $alto, 100);
-                                             
-                                            // guardamos la imagen
-                                            $fp=fopen($destino,"w");
-                                            fputs($fp,fread(fopen($destino_temporal,"r"),filesize($destino_temporal)));
-                                            fclose($fp);
-                                             
-                                             
-                                        }*/
-                                        //*********************************************************************************************
-
-                                        if($qr_image!='')
-                                        {
-                                           // $qrcode = new QrReader("../../images/track/$_dir/$qr_image");
-                                        //     if($qrcode->text())
-                                        //         $text = explode("|",$qrcode->text()); //return decoded text from QR Code            
-                                        // }
-                                                $text=$qr_image;
+                                        $text=$qr_image;
                                     }
                                     else
                                         $str_msj = "Image loaded must be taken at time!. ";                                    
@@ -166,95 +125,26 @@ $url2 = "tracker-activity.php";
                                 ?>
 
                                 <form role="form" action="tracker-activity-post1.php?acc=ing" method="post" name="forma" id="forma">
-                                    <input type="text" name="poslat" id="poslat" value="">
-                                    <input type="text" name="poslong" id="poslong" value="">
-                                    <input type="text" name="accuracy" id="accuracy" value="">
-                                    <input type="text" name="_dir" id="_dir" value="<?php echo $_dir ?>">
+                                <input type="hidden" name="poslat" id="poslat" value="">
+                                <input type="hidden" name="poslong" id="poslong" value="">
+                                <input type="hidden" name="accuracy" id="accuracy" value="">
+                                <input type="hidden" name="_dir" id="_dir" value="<?php echo $_dir ?>">
+                                
+                                <?php
+                                    $rs = $tracker->getTipoPost($db);
+                                    if ($rs) {
+                                    $geo = $tracker->consultaGeo($db, $cccc);
+                                        if ($geo) {
+                                            $points = trim($pos1) . " " . trim($pos2);
+                                            $pointLocation = new pointLocation();
+                                            $statGeoFence = $pointLocation->pointInPolygon1("$points", $_SESSION["post_polygon2"]);
 
-                                        <?php
-                                        if(is_array($text))
-                                        {
-                                            $rs = $tracker->getTipoPost($db);
-                                            
-                                            if($rs) 
-                                            {    
-                                                extract($rs[0]);
-
-                                                $date = date('m/d/Y H:i:s');
-
-                                                $points = trim($text[0]) . " " . trim($text[1]);
-
-                                                $pointLocation = new pointLocation();
-                                                $statGeoFence = $pointLocation->pointInPolygon("$points", $_SESSION["post_polygon"]);
-
-                                                //Momentaneo pq da error de lectura en algunos post 03082016
-                                                $statGeoFence='inside';
-
-                                                if($statGeoFence=='inside')
-                                                {
-                                                ?>
-                                                    <div class="col-md-6 col-xs-12 bg-map">
-                                                        <div class="form-group ">
-                                                            <h4>Current Position</h4>
-                                                            <div id="showPos"></div>
-                                                            <div id="map" style="height: 200px"></div>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-xs-12 bg-map">
-                                                        <div class="form-group "><h4>Post Info</h4>
-                                                            <label for="">Post: </label> <?php echo $post_name ?><br>
-                                                            <label for="">Address: </label> <?php echo $post_dir ?><hr>
-                                                            <div class="ckpont-found">
-                                                            <label for="">Check Point: </label> <?php echo $text[2] ?><br>
-                                                            <label for="">Date Time: </label> <?php echo $date ?>
-                                                            </div>
-
-                                                        </div>
-                                                        <input type="text" name="pos_lat_point" id="pos_lat_point" value="<?php echo $text[0] ?>">    
-                                                        <input type="text" name="pos_long_point" id="pos_long_point" value="<?php echo $text[1] ?>">    
-                                                        <input type="text" name="nb_point" id="nb_point" value="<?php echo $text[2] ?>">    
-
-                                                        <div class="clearfix"></div>
-
-                                                        <input type="hidden" name="qr_image" id="qr_image" value="">    
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                        <br>
-                                                        <button type="submit" class="btn btn-success col-md-6 col-xs-12"><i class="fa fa-check-circle-o"></i> CP Complete</button>
-                                                        <button class=" btn-dark btn col-md-5 col-xs-12" type="button" onclick="javasscript:location.href='../main/findex.php'">Back to Main Menu</button>
-                                                    </div>
-                                                <?php 
-                                                }
-                                                else
-                                                {?>
-
+                                            if ($statGeoFence!='inside') { ?>
                                                 <div class="col-md-6 col-xs-12 bg-map">
                                                     <div class="form-group  ">
 
                                                     <h3>Check Point Info</h3>
-
-                                                    <div class="alert alert-error"><strong>The Information associated with this QR Code doesn't correspond to <?php echo $post_name ?>, please try again</strong></div>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-xs-12">
-                                                    <br>
-                                                    <button type="button" class="btn btn-success col-md-6 col-xs-12" onclick="javascript:location.href='tracker-activity.php'">Back</button>
-                                                    <button class=" btn-dark btn col-md-5 col-xs-12" type="button" onclick="javasscript:location.href='../main/findex.php'">Back to Main Menu</button>
-                                                </div>
-                                                <?php    
-                                                } 
-                                            } 
-                                            else 
-                                            { ?>
-                                                <div class="col-md-6 col-xs-12 bg-map">
-                                                    <div class="form-group  ">
-
-                                                    <h3>Check Point Info</h3>
-
-                                                    <div class="alert alert-error"><strong>No Check Point information associated with this QR Code, please try again</strong></div>
-
+                                                    <div class="alert alert-error"><strong>You are outside the coverage radius to <?php echo $post_name ?>, please try again</strong></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-xs-12">
@@ -262,24 +152,39 @@ $url2 = "tracker-activity.php";
                                                     <button type="button" class="btn btn-success col-md-6 col-xs-12" onclick="javascript:location.href='tracker-activity1.php'">Back</button>
                                                     <button class=" btn-dark btn col-md-5 col-xs-12" type="button" onclick="javasscript:location.href='../main/findex.php'">Back to Main Menu</button>
                                                 </div>
-
                                             <?php
-                                            }
+                                            } else { ?>
+                                                <div class="col-md-6 col-xs-12 bg-map">
+                                                <div class="form-group ">
+                                                    <h4>Current Position</h4>
+                                                    <div id="showPos"></div>
+                                                    <div id="map" style="height: 200px"></div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                </div>
+                                                <input type="text" name="qr_image1" id="qr_image1" value="<?php echo $a; ?>">
+                                                <input type="text" name="qr_image2" id="qr_image2" value="<?php echo $b; ?>">
+                                                <input type="text" name="qr_image3" id="qr_image3" value="<?php echo $c; ?>">
+                                                <div class="clearfix"></div>
+                                                <br>
+                                                <button type="submit" class="btn btn-success col-md-6 col-xs-12"><i class="fa fa-check-circle-o"></i> CP Complete</button>
+                                                <button class=" btn-dark btn col-md-5 col-xs-12" type="button" onclick="javasscript:location.href='../main/findex.php'">Back to Main Menu</button>
+                                            <?php }
                                         }
-                                        else
-                                        { ?>
-                                            <div class="col-md-6 col-xs-12">
-                                                <br>
-                                                <div class="alert alert-error"><strong><?php echo $str_msj ?>Not Check Point Info Founded on QR Image, please go back and try again.</strong></div>
-                                                
-                                                <br>
-                                                <br>
-                                                <button class=" btn-dark btn col-md-12 col-xs-12" type="button" onclick="javasscript:history.back()">Back to Scan QR Code</button>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
+                                    } else { ?>
+                                            <div class="col-md-6 col-xs-12 bg-map">
+                                                    <div class="form-group  ">
+                                                    <h3>Check Point Info</h3>
+                                                    <div class="alert alert-error"><strong>The Information associated with this QR Code doesn't correspond to <?php echo $post_name ?>, please try again</strong></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-xs-12">
+                                                    <br>
+                                                    <button type="button" class="btn btn-success col-md-6 col-xs-12" onclick="javascript:location.href='tracker-activity1.php'">Back</button>
+                                                    <button class=" btn-dark btn col-md-5 col-xs-12" type="button" onclick="javasscript:location.href='../main/findex.php'">Back to Main Menu</button>
+                                                </div>
+                                    <?php }
+                                ?>
                                 </form>
 
 
@@ -361,9 +266,9 @@ $url2 = "tracker-activity.php";
         };        
 
 
-        Dropzone.autoDiscover = false;
+        /* Dropzone.autoDiscover = false;
         $("#dropzone").dropzone({
-            url: "upload-track.php",
+            url: "upload-track1.php",
             addRemoveLinks: true,
             dictDefaultMessage:"Touch or Click here to Scan",
             dictInvalidFileType:"Invalid file type",
@@ -410,7 +315,7 @@ $url2 = "tracker-activity.php";
                     }
                 });
             }
-        });
+        }); */
 
     });
 
